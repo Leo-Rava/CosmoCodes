@@ -2,10 +2,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 
-input_csv = "labjack_data.csv"       # Input file
-output_csv = "filtered_data.csv"     # Output file
-filter_type = "exponential"          # "moving_average" or "exponential"
-integration_time = 2.0               # Time constant (seconds)
+input_csv = "labjack_data.csv"
+output_csv = "filtered_data.csv"
+filter_type = "exponential"
+integration_time = 2.0
 
 
 df = np.loadtxt(input_csv, delimiter=",")
@@ -13,12 +13,12 @@ df = np.loadtxt(input_csv, delimiter=",")
 time = df[:, 0]
 signal = df[:, 1]
 
-# Estimate sample interval
+
 if len(time) < 2:
     raise ValueError("Not enough data to estimate sampling rate.")
-dt = np.median(np.diff(time))  # Assume mostly regular sampling
+dt = np.median(np.diff(time))  
 
-# --- Apply Filtering ---
+
 filtered = np.zeros_like(signal)
 
 if filter_type == "moving_average":
